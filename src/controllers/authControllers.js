@@ -102,7 +102,7 @@ const login = async (req, res) => {
         httpOnly: true,
         secure: false, // dùng riêng cho localhost
         samSite: 'Lax', // đảm bảo cookie đc gữi trong nhiều domain
-        maxAge: 7 * 24 * 60 * 60 * 10000 // thời gian tồn tại là 7 ngày
+        maxAge: 7 * 24 * 60 * 60 * 1000 // thời gian tồn tại là 7 ngày
 
     })
     return res.status(200).json({ message: "Login successfully", token: accessToken })

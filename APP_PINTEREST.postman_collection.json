@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "0bcb75ec-5fd6-4faa-bbd4-210cfe2b82cd",
+		"name": "APP_PINTEREST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38830503"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "CREATE USER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ho_ten\":\"test5\",\r\n    \"email\": \"test5@gmail.com\",\r\n    \"mat_khau\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/sign-up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Im5ndW9pX2R1bmdfaWQiOjV9LCJpYXQiOjE3MzI3NjgxMTQsImV4cCI6MTczMjc2ODEzNH0.PNUyYwgxSUMjl4ufZkFGHiNjulddGkJ7YSes4Kp4NAE",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test4@gmail.com\",\r\n    \"mat_khau\": \"123456\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "IMAGE",
+			"item": [
+				{
+					"name": "GET IMAGES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/img/get-images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"img",
+								"get-images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET IMAGE BY NAME",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/img/get-image/dra",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"img",
+								"get-image",
+								"dra"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET IMAGE BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/img/get-image-detail/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"img",
+								"get-image-detail",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE IMAGE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/img/delete-image/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"img",
+								"delete-image",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENT",
+			"item": [
+				{
+					"name": "NEW COMMENT",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjp7Im5ndW9pX2R1bmdfaWQiOjR9LCJpYXQiOjE3MzI3OTM3MTksImV4cCI6MTczMjg4MDExOX0.o2FVgqAaKdpSkzgPFKfGskU-i-mnkOq_LMNnaQUP4gQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"noi_dung\": \"I like Sôngku <3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/cmt/comment/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cmt",
+								"comment",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET COMMENTS",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjp7Im5ndW9pX2R1bmdfaWQiOjR9LCJpYXQiOjE3MzI3OTM3MTksImV4cCI6MTczMjg4MDExOX0.o2FVgqAaKdpSkzgPFKfGskU-i-mnkOq_LMNnaQUP4gQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/cmt/get-comments/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cmt",
+								"get-comments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "UPDATE USER",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test2@gmail.com\",\r\n    \"ho_ten\": \"test2changedname\",\r\n    \"mat_khau\": \"1234567\",\r\n    \"tuoi\": \"13\",\r\n    \"anh_dai_dien\": \"chua co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/update-user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE IMAGE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/save-image/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"save-image",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET IMAGES SAVE",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjp7Im5ndW9pX2R1bmdfaWQiOjR9LCJpYXQiOjE3MzI3OTg1NjQsImV4cCI6MTczMjg4NDk2NH0.Fh7XAhzNOQPGGOwSXQOQkKZqSO5GlwWrK2spoIZweJo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/user/get-images-saved/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"get-images-saved",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPLOAD IMAGE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjp7Im5ndW9pX2R1bmdfaWQiOjR9LCJpYXQiOjE3MzI3OTM3MTksImV4cCI6MTczMjg4MDExOX0.o2FVgqAaKdpSkzgPFKfGskU-i-mnkOq_LMNnaQUP4gQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "hinhAnh",
+									"type": "file",
+									"src": "postman-cloud:///1efac7a8-3d1f-4f60-bef5-8b7f468cc051"
+								},
+								{
+									"key": "mo_ta",
+									"value": "City",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/upload-image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"upload-image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CHECK_CONNECT",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/health-check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health-check"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

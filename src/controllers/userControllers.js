@@ -34,6 +34,28 @@ const updateUser = async (req, res) => {
     })
 }
 
+const uploadImage = async (req, res) => {
+
+    // Lấy thông tin người dùng từ token
+    let nguoi_dung_id = req.nguoi_dung_id;
+
+    // Lấy file upload
+    let file = req.file;
+
+    let newImage = await prisma.hinh_anh.create({
+        data: {
+            ten_hinh: file.originalname,
+            duong_dan: file.path,
+            mo_ta: req.body.mo_ta || null,
+            nguoi_dung_id: Number(nguoi_dung_id) , // Gắn id từ token
+        }
+    })
+    return res.status(200).json({
+        message: "Image uploaded successfully",
+        file: newImage
+    });
+}
+
 const saveImage = async (req,res) => {
     let {hinhId} = req.params;
 
@@ -58,7 +80,23 @@ const saveImage = async (req,res) => {
 
 }
 
+const getImagesSave = async (req, res) => {
+    
+    let nguoiDungId = req.params;
+    
+    let data = await prisma.luu_anh.findFirst({
+        where: {
+            nguoi_dung_id: Number(nguoiDungId), // Lọc theo người dùng
+        }
+       
+    })
+    return res.status(201).json(data)
+ }
+
+
 export {
     updateUser,
     saveImage,
+    getImagesSave,
+    uploadImage,
 }

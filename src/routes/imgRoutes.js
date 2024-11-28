@@ -1,14 +1,13 @@
 import express from "express";
 import { tryCatch } from "../config/tryCatch.js";
-import { getImages, uploadImage, getImageByName, getImageDetail, deleteImage } from "../controllers/imgControllers.js";
+import { getImages, getImageByName, getImageDetail, deleteImage } from "../controllers/imgControllers.js";
 import { uploadCloud } from "../config/upload.cloud.js";
 import { middlewareToken } from "../config/jwt.js";
 
 
 const imgRoutes = express.Router();
 
-// đăng ảnh 
-imgRoutes.post('/upload-image', middlewareToken, uploadCloud.single("hinhAnh"), tryCatch(uploadImage))
+
 
 // lấy danh sách ảnh
 imgRoutes.get('/get-images', tryCatch(getImages))
@@ -21,8 +20,6 @@ imgRoutes.get('/get-image-detail/:hinhId', tryCatch(getImageDetail))
 
 // Xoá ảnh 
 imgRoutes.delete('/delete-image/:hinhId',middlewareToken, tryCatch(deleteImage))
-
-
 
 
 

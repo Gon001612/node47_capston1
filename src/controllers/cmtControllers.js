@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 
 const comment = async(req,res) => {
     let {hinhId} =req.params;
-    let nguoi_dung_id = req.nguoi_dung.nguoi_dung_id;
+    let nguoi_dung_id = req.nguoi_dung_id;
 
     let newCmt = await prisma.binh_luan.create({
         data: {
-            nguoi_dung_id,
+            nguoi_dung_id : Number(nguoi_dung_id),
             hinh_id: Number(hinhId),
             noi_dung: req.body.noi_dung
         }
