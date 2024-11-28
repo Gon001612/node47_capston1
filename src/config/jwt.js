@@ -20,42 +20,37 @@ const createRefToken = (data) => {
 // define function để verify token
 const verifyToken = (token) => {
     try {
-        jwt.verify(token, process.env.SECRET_KEY);
-        return true;
+        let decoded = jwt.verify(token, process.env.SECRET_KEY);
+        return { valid: true, decoded };
     } catch (error) {
-        return false;
+        return { valid: false, error: error.message }
     }
 }
 
 // define middleware để check token
 const middlewareToken = (req, res, next) => {
-    let {token} = req.headers;
-    console.log("token: ", token)
-    if (!token) {
-        return res.status(401).json({message: "Unauthorized"});
-    }
-    let checkToken = verifyToken(token);
-    if (checkToken) {
-        next(); // pass check token
-    }
-    else {
-        return res.status(401).json({message: "Unauthorized"});
+    try {
+        let refreshToken = req.cookies.refreshToken;
+
+        if (!refreshToken || refreshToken == null) {
+            return res.status(401).json({ message: "Unauthorized: Token is required" });
+        }
+        // Xác minh token và lấy payload
+        let tokenVerification  = verifyToken(refreshToken);
+    
+        // Gắn payload vào req để các hàm khác sử dụng
+        req.nguoi_dung = tokenVerification.decoded.payload;
+        next(); // Pass qua middleware
+    } catch (error) {
+        console.error("Error in middlewareToken:", error);
+        return res.status(500).json({ message: "Internal server error" });
     }
 }
 
-const verifyRefreshToken = (refreshToken) => {
-    try {
-        const decoded = jwt.verify(refreshToken, process.env.SECRET_KEY);
-        return decoded.payload.nguoi_dung_id;
-    } catch (error) {
-        return null;
-    }
-}
 
 export {
     createToken,
     middlewareToken,
     createRefToken,
     verifyToken,
-    verifyRefreshToken,
 }

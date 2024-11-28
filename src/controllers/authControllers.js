@@ -111,18 +111,18 @@ const login = async (req, res) => {
 
 const extendToken = async (req, res) => {
     // lấy refresh token từ cookie của req
-    let refreshToken = req.cookies.refreshToken;
+    let { refreshToken } = req.cookies;
 
     if (!refreshToken) {
-        return res.status(401).json({ message: "401" })
+        return res.status(401).json({ message: "Unauthorized: Refresh token is required" })
     }
 
     // b2: check refresh token trong db
-    let userRefToken = await model.users.findOne({
+    let userRefToken = await prisma.nguoi_dung.findFirst({
         where: { refresh_token: refreshToken }
     })
     if (!userRefToken || userRefToken == null) {
-        return res.status(401).json({ message: "401" })
+        return res.status(401).json({ message: "Unauthorized: Invalid refresh token" })
     }
 
     // create newAccess Token
