@@ -20,7 +20,9 @@ imgRoutes.get('/get-image/:ten_hinh', tryCatch(getImageByName))
 imgRoutes.get('/get-image-detail/:hinhId', tryCatch(getImageDetail))
 
 // Xoá ảnh 
-imgRoutes.delete('/delete-image/:hinhId', tryCatch(deleteImage))
+imgRoutes.delete('/delete-image/:hinhId',middlewareToken, tryCatch(deleteImage))
+
+
 
 
 

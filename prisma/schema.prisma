@@ -11,7 +11,7 @@ model binh_luan {
   binh_luan_id   Int         @id @default(autoincrement())
   nguoi_dung_id  Int?
   hinh_id        Int?
-  ngay_binh_luan DateTime?   @db.Date
+  ngay_binh_luan DateTime?   @default(now())
   noi_dung       String?     @db.Text
   nguoi_dung     nguoi_dung? @relation(fields: [nguoi_dung_id], references: [nguoi_dung_id], onDelete: NoAction, onUpdate: NoAction, map: "binh_luan_ibfk_1")
   hinh_anh       hinh_anh?   @relation(fields: [hinh_id], references: [hinh_id], onDelete: NoAction, onUpdate: NoAction, map: "binh_luan_ibfk_2")
@@ -36,7 +36,7 @@ model hinh_anh {
 model luu_anh {
   nguoi_dung_id Int
   hinh_id       Int
-  ngay_luu      DateTime?  @db.Date
+  ngay_luu      DateTime?  @default(now())
   nguoi_dung    nguoi_dung @relation(fields: [nguoi_dung_id], references: [nguoi_dung_id], onDelete: NoAction, onUpdate: NoAction, map: "luu_anh_ibfk_1")
   hinh_anh      hinh_anh   @relation(fields: [hinh_id], references: [hinh_id], onDelete: NoAction, onUpdate: NoAction, map: "luu_anh_ibfk_2")
 
@@ -47,7 +47,7 @@ model luu_anh {
 model nguoi_dung {
   nguoi_dung_id Int         @id @default(autoincrement())
   ho_ten        String?     @db.VarChar(255)
-  email         String      @db.VarChar(255)
+  email         String      @unique @db.VarChar(255)
   mat_khau      String      @db.VarChar(255)
   tuoi          Int?
   anh_dai_dien  String?     @db.VarChar(255)

@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 
 const getImages = async (req, res) => {
-    let page = 2;
+    let page = 1;
     let size = 16;
     let index = (page - 1) * size;
 
